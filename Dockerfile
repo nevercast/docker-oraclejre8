@@ -7,7 +7,7 @@ ENV JAVA_VERSION=8 \
     JAVA_PACKAGE=server-jre \
     JAVA_HOME="/usr/lib/jvm/default-jvm"
 
-RUN apk add --no-cache --virtual=build-dependencies curl ca-certificates unzip && \
+RUN apk add --no-cache --virtual=build-dependencies curl ca-certificates && \
     cd "/tmp" && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
     "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/${JAVA_PATH}/${JAVA_PACKAGE}-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" \
@@ -53,10 +53,5 @@ RUN apk add --no-cache --virtual=build-dependencies curl ca-certificates unzip &
     rm -rf "$JAVA_HOME/man" \
            "$JAVA_HOME/jre/lib/fonts" \
            "$JAVA_HOME/jre/lib/images" && \
-
-    # wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
-    #     "http://download.oracle.com/otn-pub/java/jce/${JAVA_VERSION}/jce_policy-${JAVA_VERSION}.zip" && \
-    # unzip -jo -d "${JAVA_HOME}/jre/lib/security" "jce_policy-${JAVA_VERSION}.zip" && \
-    # rm "${JAVA_HOME}/jre/lib/security/README.txt" && \
     apk del build-dependencies && \
     rm -f "/tmp/"*
