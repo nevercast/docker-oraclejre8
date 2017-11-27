@@ -7,7 +7,7 @@ ENV JAVA_VERSION=8 \
     JAVA_PACKAGE=server-jre \
     JAVA_HOME="/usr/lib/jvm/default-jvm"
 
-RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates unzip && \
+RUN apk add --no-cache --virtual=build-dependencies curl ca-certificates unzip && \
     cd "/tmp" && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
         "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/${JAVA_PATH}/${JAVA_PACKAGE}-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" \
